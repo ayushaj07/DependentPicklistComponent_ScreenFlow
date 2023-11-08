@@ -1,0 +1,27 @@
+<!-- LAP-119796 : This is a generic component for flows which requires addition of dependent picklist for record creation
+Inputs : 
+
+1. dependentFieldApiNameToken : 'Object_API_NAME+FIELD_API_NAME'
+2. dependentFieldLabel : 'Field Label'
+3. controllerValue : 'Controlling picklist field value'
+
+Output (via FlowAttributeChangeEvent) :
+
+1. selectedDependantValue : Selected value from combobox
+-->
+<template>
+    <div class="slds-theme_default">
+        <div class="slds-float_left">
+            <template if:true={isRequired}>
+                <label class="slds-form-element__label slds-text-color_destructive slds-p-right_xxx-small">*</label>
+            </template>
+            <label class="slds-form-element__label slds-p-right_xxx-small">{dependentFieldLabel}</label>
+        </div>
+        <div class="slds-p-bottom_x-small">
+            <lightning-combobox name={dependentFieldLabel} options={finalDependentVal}
+                variant = "label-hidden" required={isRequired}
+                onchange={handleDependentPicklist}>
+            </lightning-combobox>
+        </div>
+    </div>
+</template>
